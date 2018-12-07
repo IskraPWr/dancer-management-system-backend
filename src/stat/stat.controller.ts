@@ -13,14 +13,14 @@ export class StatisticsUniversityController {
   }
 }
 
-@Controller('statistics/presence/week')
+@Controller('statistics/presence')
 export class StatisticsPresenceWeekByIdController {
     @Get(':id')
   @Header('access-control-allow-credentials', 'true')
   @Header('access-control-allow-origin', 'http://localhost:4200')
   findAll(): Array<object> {
-    return [
-        {
+    return [{
+        week: {
             grupB1: '3',
             grupB2: '3',
             grupBP: '3',
@@ -30,18 +30,7 @@ export class StatisticsPresenceWeekByIdController {
             grupAdvWed: '3',
             grupUnknown: '3',
         },
-      ];
-  }
-}
-
-@Controller('statistics/presence/month')
-export class StatisticsPresenceMonthByIdController {
-@Get(':id')
-  @Header('access-control-allow-credentials', 'true')
-  @Header('access-control-allow-origin', 'http://localhost:4200')
-  findAll(): Array<object> {
-    return [
-        {
+        month: {
             grupB1: '3',
             grupB2: '3',
             grupBP: '3',
@@ -51,18 +40,7 @@ export class StatisticsPresenceMonthByIdController {
             grupAdvWed: '3',
             grupUnknown: '3',
         },
-      ];
-  }
-}
-
-@Controller('statistics/presence/semestr')
-export class StatisticsPresenceSemestrByIdController {
- @Get(':id')
-  @Header('access-control-allow-credentials', 'true')
-  @Header('access-control-allow-origin', 'http://localhost:4200')
-  findAll(): Array<object> {
-    return [
-        {
+        semestr: {
             grupB1: '3',
             grupB2: '3',
             grupBP: '3',
@@ -71,6 +49,7 @@ export class StatisticsPresenceSemestrByIdController {
             grupAdvMon: '3',
             grupAdvWed: '3',
             grupUnknown: '3',
+        },
         },
       ];
   }

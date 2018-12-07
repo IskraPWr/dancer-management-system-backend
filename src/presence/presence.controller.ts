@@ -70,7 +70,7 @@ export class PresenceController {
             fri: '',
             sat: '',
             sun: '',
-            notes: [],
+            notes: ['lubie', 'Cie'],
           },
           {
             name: 'Piotr',

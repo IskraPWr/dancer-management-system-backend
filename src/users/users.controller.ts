@@ -37,7 +37,7 @@ export class UsersController {
                 year: '3',
                 index: '227574',
                 notes: [
-
+                    'kon',
                 ],
             },
             {
@@ -50,7 +50,8 @@ export class UsersController {
                 year: '3',
                 index: '214574',
                 notes: [
-
+                    'pies',
+                    'kot',
                 ],
             },
             {

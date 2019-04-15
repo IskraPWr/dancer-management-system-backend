@@ -1,7 +1,7 @@
 import { List } from './../list/list.entity';
 import { Injectable, Inject} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Connection } from 'typeorm';
 
 @Injectable()
 export class ListService {
@@ -9,9 +9,8 @@ export class ListService {
     @InjectRepository(List)
     private readonly listRepository: Repository<List>,
   ) {}
-
   async findAll(): Promise<List[]> {
-    return await this.listRepository.find();
+    return await this.listRepository.query('SELECT * FROM `list` ORDER BY `list`.`date` DESC');
   }
 
   async findAllActive(): Promise<List[]> {
@@ -19,10 +18,8 @@ export class ListService {
     return await this.listRepository.query('SELECT `list`.* FROM `list`, `users` WHERE `list`.`email` = `users`.`email` AND `users`.`status` = 1 ORDER BY `list`.`id_transaction` ASC');
   }
 
-  async findByEmail(mail): Promise<List> {
-      return await this.listRepository.findOneOrFail({
-        email : mail,
-      });
+  async findByEmail(mail): Promise<List[]> {
+      return await this.listRepository.find({email: mail});
   }
 
   async findByName(nam): Promise<List> {

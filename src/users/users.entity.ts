@@ -43,4 +43,7 @@ export class Users {
 
   @Column()
   status: boolean;
+
+  @Column('datetime')
+  join_date: Date;
 }

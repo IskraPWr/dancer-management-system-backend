@@ -1,9 +1,9 @@
-{
+  {
     "type": "mysql",
-    "host": "mysql.sktt.cba.pl",
+    "host": "localhost",
     "port": 3306,
-    "username": "Iskra",
-    "password": "WApr4tU8dQ",
+    "username": "root",
+    "password": "",
     "database": "gregkikut",
     "entities": ["src/**/**.entity{.ts,.js}"],
     "synchronize": true

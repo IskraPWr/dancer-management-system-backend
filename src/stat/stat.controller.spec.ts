@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { StatController } from './stat.controller';
+import { StatisticsArchivesGenderController } from './stat.controller';
 
 describe('Stat Controller', () => {
   let module: TestingModule;
-  
+
   beforeAll(async () => {
     module = await Test.createTestingModule({
-      controllers: [StatController],
+      controllers: [StatisticsArchivesGenderController],
     }).compile();
   });
   it('should be defined', () => {
-    const controller: StatController = module.get<StatController>(StatController);
+    const controller: StatisticsArchivesGenderController = module.get<StatisticsArchivesGenderController>(StatisticsArchivesGenderController);
     expect(controller).toBeDefined();
   });
 });

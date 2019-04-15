@@ -8,6 +8,9 @@ export class Presence {
   @Column('int')
   id_user: number;
 
+  @Column('int')
+  id_group: number;
+
   @Column('datetime')
   time: string;
 }

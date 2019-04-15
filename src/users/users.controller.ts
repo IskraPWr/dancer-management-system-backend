@@ -1,17 +1,19 @@
 import { NotesService } from './../notes/notes.service';
 import { ParseIntPipe } from './../pipes/parse-int.pipe';
 import { UsersService } from './users.service';
-import { Get, Post, Param, Header, Controller } from '@nestjs/common';
+import { Get, Post, Param, Header, Controller, Body } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
     constructor(private users: UsersService, private notes: NotesService) {
     }
 
-    /* @Post()
-    create() {
-    return this.db.findAll();
-  }*/
+    @Post('delete')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    add(@Body() idArray): Promise<object> {
+    return this.users.deleteUsers(idArray);
+    }
 
     @Get(':id')
     @Header('access-control-allow-credentials', 'true')
@@ -35,6 +37,7 @@ export class UsersController {
 
             for ( let i = 0; i < usersQuantity; i++) {
                 const obj = {
+                    id : value[0][i].id_user,
                     name : value[0][i].name,
                     surname : value[0][i].surname,
                     email : value[0][i].email,

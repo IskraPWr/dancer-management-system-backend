@@ -2,6 +2,13 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Group {
+  constructor (id_semester, name, day, start, end){
+    this.id_semester = id_semester;
+    this.name = name;
+    this.day = day;
+    this.start = start;
+    this.end = end;
+  }
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,10 +21,10 @@ export class Group {
   @Column('int')
   day: number;
 
-  @Column('datetime')
-  start: Date;
+  @Column('time')
+  start: string;
 
-  @Column('datetime')
-  end: Date;
+  @Column('time')
+  end: string;
 
 }

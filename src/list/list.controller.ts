@@ -1,5 +1,5 @@
 import { ListService } from './list.service';
-import { Get, Header, Controller } from '@nestjs/common';
+import { Get, Param, Header, Controller } from '@nestjs/common';
 
 @Controller('list')
 export class ListController {

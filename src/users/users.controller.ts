@@ -15,6 +15,48 @@ export class UsersController {
     return this.users.deleteUsers(idArray);
     }
 
+    @Post('exist/login')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    check(@Body() idArray): Promise<object> {
+    return this.users.isExistLogin(idArray);
+    }
+
+    @Post('exist/phone')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    checkPhone(@Body() idArray): Promise<object> {
+    return this.users.isExistPhone(idArray);
+    }
+
+    @Post('exist/key')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    checkKey(@Body() idArray) {
+    return this.users.isExistKey(idArray);
+    }
+
+    @Post('exist/email')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    checkEmail(@Body() idArray): Promise<object> {
+    return this.users.isExistEmail(idArray);
+    }
+
+    @Post('add')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    addUser(@Body() message){
+    return this.users.addUser(message);
+    }
+
+    @Post('generate')
+    @Header('access-control-allow-credentials', 'true')
+    @Header('access-control-allow-origin', 'http://localhost:4200')
+    generatePass(@Body() message){
+    return this.users.generatePass(message);
+    }
+
     @Get(':id')
     @Header('access-control-allow-credentials', 'true')
     @Header('access-control-allow-origin', 'http://localhost:4200')

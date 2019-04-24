@@ -84,8 +84,5 @@ export class GroupService {
         );
         this.groupRepository.insert(ent);
       })
-      .catch(er => {
-        console.log(er);
-      });
   }
 }

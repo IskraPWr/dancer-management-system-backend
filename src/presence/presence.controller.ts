@@ -16,6 +16,10 @@ export class PresenceController {
     return Promise.resolve(
       this.presence.findByIdUser(id),
     ).then(presences => {
+
+      if(!presences[0]){
+        return null
+      }
         const presenceQuantity = Object.keys(presences).length;
         const firstPresenceData = new Date(presences[0].time);
         const lastPresenceData = new Date(presences[presenceQuantity - 1].time);

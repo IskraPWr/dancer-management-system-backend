@@ -76,7 +76,7 @@ import { MembersService } from './members/members.service';
     InstallmentController,
     NotesController,
     MembersController,
-    AssignmentspController
+    AssignmentspController,
   ],
   providers: [
     AppService,

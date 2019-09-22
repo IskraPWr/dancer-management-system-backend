@@ -6,6 +6,6 @@ async function bootstrap() {
 
   const PORT = process.env.PORT || 3000;
 
-  await app.listen(PORT, '0.0.0.0');
+  await app.listen(PORT);
 }
 bootstrap();

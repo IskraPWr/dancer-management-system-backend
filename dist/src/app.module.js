@@ -61,7 +61,28 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     common_1.Module({
         imports: [
-            typeorm_2.TypeOrmModule.forRoot(),
+            typeorm_2.TypeOrmModule.forRoot({
+                type: 'mysql',
+                host: 'mysql.sktt.cba.pl',
+                port: 3306,
+                username: 'Iskra',
+                password: 'B6k960x4j4',
+                database: 'gregkikut',
+                entities: [
+                    users_entity_1.Users,
+                    tokens_entity_1.Tokens,
+                    presence_entity_1.Presence,
+                    notes_entity_1.Notes,
+                    admins_entity_1.Admins,
+                    authorization_entity_1.Authorization,
+                    list_entity_1.List,
+                    instrallmentDate_entity_1.Installment,
+                    group_entity_1.Group,
+                    admins_entity_1.Admins,
+                    installment_entity_1.Installments,
+                    members_entity_1.Members,
+                ],
+            }),
             typeorm_2.TypeOrmModule.forFeature([
                 users_entity_1.Users,
                 tokens_entity_1.Tokens,

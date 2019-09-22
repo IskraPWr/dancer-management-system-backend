@@ -28,7 +28,7 @@ import { PresenceController } from './components/presence/presence.controller';
 import { ChargesController } from './components/charges/charges.controller';
 import { ListController } from './components/list/list.controller';
 import { ArchivesController } from './components/archives/archives.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import {
   StatisticsUniversityController,
 } from './components/stat/stat.controller';
@@ -44,12 +44,34 @@ import { InstallmentService } from './components/installment/installment.service
 import { Installments } from './components/installment/installment.entity';
 import { AuthorizationService } from './components/authorization/authorization.service';
 import { StatService } from './components/stat/stat.service';
+import ormconfig from './orm.config';
 
 
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'mysql.sktt.cba.pl',
+      port: 3306,
+      username: 'Iskra',
+      password: 'B6k960x4j4',
+      database: 'gregkikut',
+      entities: [
+        Users,
+        Tokens,
+        Presence,
+        Notes,
+        Admins,
+        Authorization,
+        List,
+        Installment,
+        Group,
+        Admins,
+        Installments,
+        Members,
+      ],
+    }),
     TypeOrmModule.forFeature([
       Users,
       Tokens,

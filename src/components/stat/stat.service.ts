@@ -17,9 +17,9 @@ import {
   IPresence,
   IPresenceSemesterData,
   IPresenceStat2,
-} from 'src/typings/typings';
+} from './../../typings/typings';
 import { Users } from '../users/users.entity';
-import { days } from 'src/items/iteams';
+import { days } from '../../items/iteams';
 import moment = require('moment');
 
 @Injectable()

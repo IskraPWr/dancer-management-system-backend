@@ -1,7 +1,7 @@
 import { IMailerData } from './../typings/typings.d';
 import { readFile } from 'fs';
 import * as nodemailer from 'nodemailer';
-import { TMail, ITMail } from 'src/typings/typings';
+import { TMail, ITMail } from '../typings/typings';
 
 const text: ITMail = {
   newPassSite: 'Twoje nowe hasło logowania do bazy SKTT Iskra to:',

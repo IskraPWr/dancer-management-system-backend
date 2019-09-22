@@ -1,7 +1,7 @@
+import { GeneratePass, NewAccountData } from './../../validators/validators';
 import { NotesService } from './../notes/notes.service';
 import { UsersService } from './users.service';
-import { NewAccountData, GeneratePass } from 'src/validators/validators';
-import { ICheckLoginError, ICheckPhoneError, ICheckKeyError, ICheckEmailError } from 'src/typings/typings';
+import { ICheckLoginError, ICheckPhoneError, ICheckKeyError, ICheckEmailError } from './../../typings/typings';
 import { Users } from './users.entity';
 export declare class UsersController {
     private users;

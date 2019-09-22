@@ -1,3 +1,5 @@
+import { GeneratePass, NewAccountData } from './../../validators/validators';
+import { Guard } from './../../guards/roles.guard';
 import { NotesService } from './../notes/notes.service';
 import { UsersService } from './users.service';
 import {
@@ -13,9 +15,8 @@ import {
   Request,
   Put,
 } from '@nestjs/common';
-import { Guard } from 'src/guards/roles.guard';
-import { NewAccountData, GeneratePass } from 'src/validators/validators';
-import { ICheckLoginError, ICheckPhoneError, ICheckKeyError, ICheckEmailError, IUser } from 'src/typings/typings';
+
+import { ICheckLoginError, ICheckPhoneError, ICheckKeyError, ICheckEmailError, IUser } from './../../typings/typings';
 import { Users } from './users.entity';
 
 //@UseGuards(Guard)

@@ -19,7 +19,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const users_entity_1 = require("../users/users.entity");
-const iteams_1 = require("src/items/iteams");
+const iteams_1 = require("../../items/iteams");
 const moment = require("moment");
 let StatService = class StatService {
     constructor(usersRepository, semestersRepository, groupsRepository, presencesRepository) {

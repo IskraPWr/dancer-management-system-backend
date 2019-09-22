@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const presence_entity_1 = require("./../presence/presence.entity");
 const group_entity_1 = require("./../group/group.entity");
@@ -24,57 +32,71 @@ let InstallmentDateService = class InstallmentDateService {
         this.groupRepository = groupRepository;
         this.presenceRepository = presenceRepository;
     }
-    async findAll() {
-        return await this.installmentRepository.query('SELECT * FROM `installment` ORDER BY `installment`.`end` DESC');
-    }
-    async getAllHeaders() {
-        return await this.installmentRepository.query('SELECT `id_semester`, `name` FROM `installment` ORDER BY `installment`.`end` DESC');
-    }
-    async getAllSemetersStartAndEnd() {
-        return await this.installmentRepository.query('SELECT `id_semester`, `start`, `end`, `name` FROM `installment` ORDER BY `installment`.`end` DESC');
-    }
-    async findSemesterByIdGroup(id) {
-        return await this.installmentRepository.query('SELECT `installment`.`start`, `installment`.`end` FROM `installment`, `group` WHERE `installment`.`id_semester`=`group`.`id_semester` AND `group`.`id`=' +
-            id);
-    }
-    async changeDate(message) {
-        return await this.installmentRepository.update({
-            id_semester: message.id,
-        }, {
-            [message.field]: message.field === 'name'
-                ? message.value
-                : new Date(new Date(message.value).setHours(23, 59, 59, 999)),
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentRepository.query('SELECT * FROM `installment` ORDER BY `installment`.`end` DESC');
         });
     }
-    async addDate(message) {
-        return await Promise.resolve()
-            .then(() => {
-            const ent = this.installmentRepository.create(new instrallmentDate_entity_1.Installment(message.name, message.start, message.date_1, message.date_2, message.date_3, message.end));
-            this.installmentRepository.insert(ent);
-        })
-            .catch(er => {
-            console.log(er);
+    getAllHeaders() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentRepository.query('SELECT `id_semester`, `name` FROM `installment` ORDER BY `installment`.`end` DESC');
         });
     }
-    async removeDate(idArray) {
-        return await Promise.resolve(idArray.ids.forEach(element => {
-            Promise.resolve(this.groupRepository.find({
-                id_semester: element
-            })).then(groups => {
-                groups.forEach(group => {
-                    this.presenceRepository.delete({
-                        id_group: group.id
+    getAllSemetersStartAndEnd() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentRepository.query('SELECT `id_semester`, `start`, `end`, `name` FROM `installment` ORDER BY `installment`.`end` DESC');
+        });
+    }
+    findSemesterByIdGroup(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentRepository.query('SELECT `installment`.`start`, `installment`.`end` FROM `installment`, `group` WHERE `installment`.`id_semester`=`group`.`id_semester` AND `group`.`id`=' +
+                id);
+        });
+    }
+    changeDate(message) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentRepository.update({
+                id_semester: message.id,
+            }, {
+                [message.field]: message.field === 'name'
+                    ? message.value
+                    : new Date(new Date(message.value).setHours(23, 59, 59, 999)),
+            });
+        });
+    }
+    addDate(message) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve()
+                .then(() => {
+                const ent = this.installmentRepository.create(new instrallmentDate_entity_1.Installment(message.name, message.start, message.date_1, message.date_2, message.date_3, message.end));
+                this.installmentRepository.insert(ent);
+            })
+                .catch(er => {
+                console.log(er);
+            });
+        });
+    }
+    removeDate(idArray) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve(idArray.ids.forEach(element => {
+                Promise.resolve(this.groupRepository.find({
+                    id_semester: element
+                })).then(groups => {
+                    groups.forEach(group => {
+                        this.presenceRepository.delete({
+                            id_group: group.id
+                        });
+                    });
+                }).then(() => {
+                    this.installmentRepository.delete({
+                        id_semester: element,
+                    });
+                    this.groupRepository.delete({
+                        id_semester: element,
                     });
                 });
-            }).then(() => {
-                this.installmentRepository.delete({
-                    id_semester: element,
-                });
-                this.groupRepository.delete({
-                    id_semester: element,
-                });
-            });
-        }));
+            }));
+        });
     }
 };
 InstallmentDateService = __decorate([

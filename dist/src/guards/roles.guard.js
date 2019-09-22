@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const tokens_entity_1 = require("./../tokens/tokens.entity");
 const common_1 = require("@nestjs/common");
@@ -22,59 +30,61 @@ let Guard = class Guard {
         this.reflector = reflector;
         this.tokensRepository = tokensRepository;
     }
-    async canActivate(context) {
-        const roles = this.reflector.get('roles', context.getHandler());
-        const token = context.getArgs()[0]['headers'];
-        const id = context.getArgs()[0]['params']['id'];
-        if (!roles) {
-            return true;
-        }
-        if (roles[0] === 'admin') {
-            return await this.tokensRepository
-                .findOne({
-                token: token,
-            })
-                .then(admin => {
-                if (admin) {
-                    if (admin.role === 2 &&
-                        admin.date > new Date(new Date().valueOf() - 15 * 60 * 1000)) {
-                        this.tokensRepository
-                            .update({
-                            token: token,
-                        }, {
-                            date: new Date(),
-                        })
-                            .then(() => {
+    canActivate(context) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const roles = this.reflector.get('roles', context.getHandler());
+            const token = context.getArgs()[0]['headers'];
+            const id = context.getArgs()[0]['params']['id'];
+            if (!roles) {
+                return true;
+            }
+            if (roles[0] === 'admin') {
+                return yield this.tokensRepository
+                    .findOne({
+                    token: token,
+                })
+                    .then(admin => {
+                    if (admin) {
+                        if (admin.role === 2 &&
+                            admin.date > new Date(new Date().valueOf() - 15 * 60 * 1000)) {
+                            this.tokensRepository
+                                .update({
+                                token: token,
+                            }, {
+                                date: new Date(),
+                            })
+                                .then(() => {
+                                return true;
+                            });
+                        }
+                    }
+                    return false;
+                });
+            }
+            if (roles[0] === 'user') {
+                return yield this.tokensRepository
+                    .findOne({
+                    token: token,
+                })
+                    .then(user => {
+                    if (user) {
+                        if (user.role === 0 &&
+                            user.date > new Date(new Date().valueOf() - 15 * 60 * 1000) &&
+                            user.id_user === parseInt(id, 10)) {
+                            console.log(43);
+                            this.tokensRepository.update({
+                                token: token,
+                            }, {
+                                date: new Date(),
+                            });
                             return true;
-                        });
+                        }
                     }
-                }
-                return false;
-            });
-        }
-        if (roles[0] === 'user') {
-            return await this.tokensRepository
-                .findOne({
-                token: token,
-            })
-                .then(user => {
-                if (user) {
-                    if (user.role === 0 &&
-                        user.date > new Date(new Date().valueOf() - 15 * 60 * 1000) &&
-                        user.id_user === parseInt(id, 10)) {
-                        console.log(43);
-                        this.tokensRepository.update({
-                            token: token,
-                        }, {
-                            date: new Date(),
-                        });
-                        return true;
-                    }
-                }
-                return false;
-            });
-        }
-        return false;
+                    return false;
+                });
+            }
+            return false;
+        });
     }
 };
 Guard = __decorate([

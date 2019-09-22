@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs_1 = require("fs");
 const nodemailer = require("nodemailer");
@@ -23,34 +31,36 @@ const subject = {
 class Mail {
     constructor() {
     }
-    async sendMail(type, mailToRecipient, data) {
-        let mail;
-        let transporter = nodemailer.createTransport({
-            host: 'mail.cba.pl',
-            port: 587,
-            secure: false,
-            auth: {
-                user: 'sktt@sktt.cba.pl',
-                pass: 'G3pdTSpaxp',
-            },
-        });
-        await fs_1.readFile('../iskra2/src/mailer/mail.html', {}, (err, readData) => {
-            if (!err) {
-                mail = readData
-                    .toString()
-                    .replace('*PASS*', data ? data.password : '')
-                    .replace('*TEXT*', text[type]);
-            }
-            else {
-                throw err;
-            }
-        });
-        return transporter.sendMail({
-            from: '"SKTT Iskra PWr 🕺💃" <sktt@sktt.cba.pl>',
-            to: mailToRecipient,
-            html: mail,
-            subject: subject[type],
-            text: `${subject[type]} ${data ? '- ' + data.password : null}`,
+    sendMail(type, mailToRecipient, data) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let mail;
+            let transporter = nodemailer.createTransport({
+                host: 'mail.cba.pl',
+                port: 587,
+                secure: false,
+                auth: {
+                    user: 'sktt@sktt.cba.pl',
+                    pass: 'G3pdTSpaxp',
+                },
+            });
+            yield fs_1.readFile('../iskra2/src/mailer/mail.html', {}, (err, readData) => {
+                if (!err) {
+                    mail = readData
+                        .toString()
+                        .replace('*PASS*', data ? data.password : '')
+                        .replace('*TEXT*', text[type]);
+                }
+                else {
+                    throw err;
+                }
+            });
+            return transporter.sendMail({
+                from: '"SKTT Iskra PWr 🕺💃" <sktt@sktt.cba.pl>',
+                to: mailToRecipient,
+                html: mail,
+                subject: subject[type],
+                text: `${subject[type]} ${data ? '- ' + data.password : null}`,
+            });
         });
     }
 }

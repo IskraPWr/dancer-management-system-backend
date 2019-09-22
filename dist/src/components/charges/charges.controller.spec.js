@@ -1,14 +1,22 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const testing_1 = require("@nestjs/testing");
 const charges_controller_1 = require("./charges.controller");
 describe('Charges Controller', () => {
     let module;
-    beforeAll(async () => {
-        module = await testing_1.Test.createTestingModule({
+    beforeAll(() => __awaiter(this, void 0, void 0, function* () {
+        module = yield testing_1.Test.createTestingModule({
             controllers: [charges_controller_1.ChargesController],
         }).compile();
-    });
+    }));
     it('should be defined', () => {
         const controller = module.get(charges_controller_1.ChargesController);
         expect(controller).toBeDefined();

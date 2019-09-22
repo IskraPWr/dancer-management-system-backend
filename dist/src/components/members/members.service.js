@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const members_entity_1 = require("./members.entity");
 const common_1 = require("@nestjs/common");
@@ -20,26 +28,30 @@ let MembersService = class MembersService {
     constructor(membersRepository) {
         this.membersRepository = membersRepository;
     }
-    async removeFromGroup(id, body) {
-        return await Promise.resolve(body.forEach(element => {
-            this.membersRepository.delete({
-                id_group: id,
-                id_user: element,
-            });
-        }));
+    removeFromGroup(id, body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve(body.forEach(element => {
+                this.membersRepository.delete({
+                    id_group: id,
+                    id_user: element,
+                });
+            }));
+        });
     }
-    async addToGroup(id, body) {
-        return await Promise.resolve(body.forEach(element => {
-            this.membersRepository.count({
-                id_user: element,
-                id_group: id,
-            }).then(ans => {
-                if (ans === 0) {
-                    const ent = this.membersRepository.create(new members_entity_1.Members(element, id));
-                    this.membersRepository.insert(ent);
-                }
-            }).catch(error => console.log(error));
-        }));
+    addToGroup(id, body) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve(body.forEach(element => {
+                this.membersRepository.count({
+                    id_user: element,
+                    id_group: id,
+                }).then(ans => {
+                    if (ans === 0) {
+                        const ent = this.membersRepository.create(new members_entity_1.Members(element, id));
+                        this.membersRepository.insert(ent);
+                    }
+                }).catch(error => console.log(error));
+            }));
+        });
     }
 };
 MembersService = __decorate([

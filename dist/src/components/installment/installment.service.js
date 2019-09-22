@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const installment_entity_1 = require("./installment.entity");
 const common_1 = require("@nestjs/common");
@@ -20,37 +28,49 @@ let InstallmentService = class InstallmentService {
     constructor(installmentsRepository) {
         this.installmentsRepository = installmentsRepository;
     }
-    async findAll() {
-        return await this.installmentsRepository.find();
-    }
-    async findType0() {
-        return await this.installmentsRepository.find({ type: 0 });
-    }
-    async findType1() {
-        return await this.installmentsRepository.find({ type: 1 });
-    }
-    async removeDate(idArray) {
-        return await Promise.resolve(idArray.ids.forEach(element => {
-            Promise.resolve(this.installmentsRepository.delete({
-                id: element
-            }));
-        }));
-    }
-    async changeDate(message) {
-        return await this.installmentsRepository.update({
-            id: message.id,
-        }, {
-            [message.field]: message.value
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentsRepository.find();
         });
     }
-    async addDate(message) {
-        return await Promise.resolve()
-            .then(() => {
-            const ent = this.installmentsRepository.create(new installment_entity_1.Installments(message.name, message.installment_1, message.installment_2, message.installment_3, message.type));
-            this.installmentsRepository.insert(ent);
-        })
-            .catch(er => {
-            console.log(er);
+    findType0() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentsRepository.find({ type: 0 });
+        });
+    }
+    findType1() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentsRepository.find({ type: 1 });
+        });
+    }
+    removeDate(idArray) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve(idArray.ids.forEach(element => {
+                Promise.resolve(this.installmentsRepository.delete({
+                    id: element
+                }));
+            }));
+        });
+    }
+    changeDate(message) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.installmentsRepository.update({
+                id: message.id,
+            }, {
+                [message.field]: message.value
+            });
+        });
+    }
+    addDate(message) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve()
+                .then(() => {
+                const ent = this.installmentsRepository.create(new installment_entity_1.Installments(message.name, message.installment_1, message.installment_2, message.installment_3, message.type));
+                this.installmentsRepository.insert(ent);
+            })
+                .catch(er => {
+                console.log(er);
+            });
         });
     }
 };

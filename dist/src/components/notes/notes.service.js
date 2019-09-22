@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const notes_entity_1 = require("./notes.entity");
 const common_1 = require("@nestjs/common");
@@ -20,26 +28,36 @@ let NotesService = class NotesService {
     constructor(notesRepository) {
         this.notesRepository = notesRepository;
     }
-    async findAllFromActiveUsers() {
-        return await this.notesRepository.query('SELECT DISTINCT `notes`.`note`, `notes`.`id_user` FROM `users`, `notes`, `presence` WHERE `users`.`id_user` = `presence`.`id_user` AND `users`.`status` = 1 AND `users`.`id_user`= `notes`.`id_user` ORDER BY `notes`.`id_user` ASC');
+    findAllFromActiveUsers() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.notesRepository.query('SELECT DISTINCT `notes`.`note`, `notes`.`id_user` FROM `users`, `notes`, `presence` WHERE `users`.`id_user` = `presence`.`id_user` AND `users`.`status` = 1 AND `users`.`id_user`= `notes`.`id_user` ORDER BY `notes`.`id_user` ASC');
+        });
     }
-    async findAll() {
-        return await this.notesRepository.query('SELECT `notes`.`id_user`, `notes`.`note` FROM `notes`, `users` WHERE `users`.`id_user` = `notes`.`id_user` AND `users`.`status` = 1 ORDER BY `notes`.`id_user` ASC');
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.notesRepository.query('SELECT `notes`.`id_user`, `notes`.`note` FROM `notes`, `users` WHERE `users`.`id_user` = `notes`.`id_user` AND `users`.`status` = 1 ORDER BY `notes`.`id_user` ASC');
+        });
     }
-    async postNote(note) {
-        const ent = this.notesRepository.create(new notes_entity_1.Notes(note.id_user, note.note));
-        return await this.notesRepository.insert(ent);
+    postNote(note) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const ent = this.notesRepository.create(new notes_entity_1.Notes(note.id_user, note.note));
+            return yield this.notesRepository.insert(ent);
+        });
     }
-    async postNotes(notes) {
-        return await Promise.resolve(notes.id_user.forEach(element => {
-            const ent = this.notesRepository.create(new notes_entity_1.Notes(element, notes.note));
-            this.notesRepository.insert(ent);
-        }));
+    postNotes(notes) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield Promise.resolve(notes.id_user.forEach(element => {
+                const ent = this.notesRepository.create(new notes_entity_1.Notes(element, notes.note));
+                this.notesRepository.insert(ent);
+            }));
+        });
     }
-    async deleteNote(note) {
-        return await this.notesRepository.delete({
-            id_user: note.id_user,
-            note: note.note,
+    deleteNote(note) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.notesRepository.delete({
+                id_user: note.id_user,
+                note: note.note,
+            });
         });
     }
 };

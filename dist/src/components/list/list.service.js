@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const list_entity_1 = require("./../list/list.entity");
 const common_1 = require("@nestjs/common");
@@ -20,23 +28,33 @@ let ListService = class ListService {
     constructor(listRepository) {
         this.listRepository = listRepository;
     }
-    async findAll() {
-        return await this.listRepository.query('SELECT * FROM `list` ORDER BY `list`.`date` DESC');
-    }
-    async findAllActive() {
-        return await this.listRepository.query('SELECT `list`.* FROM `list`, `users` WHERE `list`.`email` = `users`.`email` AND `users`.`status` = 1 ORDER BY `list`.`id_transaction` ASC');
-    }
-    async findByEmail(mail) {
-        return await this.listRepository.find({ email: mail });
-    }
-    async findByName(nam) {
-        return await this.listRepository.findOneOrFail({
-            name: nam,
+    findAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.listRepository.query('SELECT * FROM `list` ORDER BY `list`.`date` DESC');
         });
     }
-    async findById(id) {
-        return await this.listRepository.findOneOrFail({
-            id_transaction: id,
+    findAllActive() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.listRepository.query('SELECT `list`.* FROM `list`, `users` WHERE `list`.`email` = `users`.`email` AND `users`.`status` = 1 ORDER BY `list`.`id_transaction` ASC');
+        });
+    }
+    findByEmail(mail) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.listRepository.find({ email: mail });
+        });
+    }
+    findByName(nam) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.listRepository.findOneOrFail({
+                name: nam,
+            });
+        });
+    }
+    findById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.listRepository.findOneOrFail({
+                id_transaction: id,
+            });
         });
     }
 };

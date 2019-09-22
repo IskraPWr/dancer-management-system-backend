@@ -3,7 +3,6 @@ import { GroupService } from './../group/group.service';
 import { PresenceService } from './../presence/presence.service';
 import { UsersService } from '../users/users.service';
 import { StatService } from './stat.service';
-import { IPresenceStat, IPresenceStat2 } from 'src/typings/typings';
 export declare class StatisticsUniversityController {
     private user;
     private users;
@@ -19,6 +18,6 @@ export declare class StatisticsUniversityController {
     findCharges(): Promise<Array<object>>;
     findGenderInArchives(): Promise<Array<object>>;
     find(id: any, id_semester: any): Promise<any[]>;
-    getPresence(): Promise<IPresenceStat2>;
-    findPresence(id: any): Promise<any[] | IPresenceStat>;
+    getPresence(): Promise<any>;
+    findPresence(id: any): Promise<any[] | import("../../typings/typings").IPresenceStat>;
 }

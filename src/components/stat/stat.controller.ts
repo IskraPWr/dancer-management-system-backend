@@ -5,7 +5,6 @@ import { PresenceService } from './../presence/presence.service';
 import { Controller, Get, Header, Param } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { StatService } from './stat.service';
-import { IPresenceStat, IPresenceStat2 } from 'src/typings/typings';
 
 @Controller('statistics')
 export class StatisticsUniversityController {
@@ -207,7 +206,7 @@ export class StatisticsUniversityController {
   }
 
   @Get('people')
-  getPresence(): Promise<IPresenceStat2> {
+  getPresence(): Promise<any> {
      return this.stat.getAllPresenceStat();
   }
 

@@ -19,9 +19,10 @@ import {
   ICheckPhoneError,
   ICheckKeyError,
 } from 'src/typings/typings';
-import { Tokens } from 'src/tokens/tokens.entity';
+
 import { Notes } from '../notes/notes.entity';
 import { error } from 'util';
+import { Tokens } from '../../tokens/tokens.entity';
 
 @Injectable()
 export class UsersService {

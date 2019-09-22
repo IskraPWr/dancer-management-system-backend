@@ -30,8 +30,8 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const hash = require("password-hash");
 const generator = require("generate-password");
-const tokens_entity_1 = require("src/tokens/tokens.entity");
 const notes_entity_1 = require("../notes/notes.entity");
+const tokens_entity_1 = require("../../tokens/tokens.entity");
 let UsersService = class UsersService {
     constructor(usersRepository, membersRepository, notesRepository, tokensRepository, adminsRepository, authorizationRepository) {
         this.usersRepository = usersRepository;

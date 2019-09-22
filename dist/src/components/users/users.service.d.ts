@@ -4,8 +4,8 @@ import { Members } from './../members/members.entity';
 import { Users } from './users.entity';
 import { Repository } from 'typeorm';
 import { ICheckLogin, ICheckEmail, ICheckPhone, ICheckKey, IUser, ICheckLoginError, ICheckEmailError, ICheckPhoneError, ICheckKeyError } from 'src/typings/typings';
-import { Tokens } from 'src/tokens/tokens.entity';
 import { Notes } from '../notes/notes.entity';
+import { Tokens } from '../../tokens/tokens.entity';
 export declare class UsersService {
     private readonly usersRepository;
     private readonly membersRepository;

@@ -12,8 +12,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const validators_1 = require("./../../validators/validators");
 const common_1 = require("@nestjs/common");
-const validators_1 = require("src/validators/validators");
 const users_service_1 = require("../users/users.service");
 let LoginController = class LoginController {
     constructor(users) {

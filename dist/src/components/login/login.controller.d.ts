@@ -1,4 +1,4 @@
-import { LogIn } from 'src/validators/validators';
+import { LogIn } from './../../validators/validators';
 import { UsersService } from '../users/users.service';
 export declare class LoginController {
     private users;

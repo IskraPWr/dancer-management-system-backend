@@ -1,5 +1,5 @@
+import { LogIn } from './../../validators/validators';
 import { Get, Controller, Post, Body, Header } from '@nestjs/common';
-import { LogIn } from 'src/validators/validators';
 import { UsersService } from '../users/users.service';
 
 @Controller('login')

@@ -1,45 +1,50 @@
-import { Members } from './members/members.entity';
-import { NotesController } from './notes/notes.controller';
-import { InstallmentService } from './installment/installment.service';
-import { Installments } from './installment/installment.entity';
-import { AuthorizationService } from './authorization/authorization.service';
-import { AdminsService } from './admins/admins.service';
-import { GroupController, AssignmentspController } from './group/group.controler';
-import { GroupService } from './group/group.service';
-import { Group } from './group/group.entity';
-import { InstallmentDateController } from './instrallmentDate/instrallmentDate.controller';
-import { InstallmentDateService } from './instrallmentDate/instrallmentDate.service';
-import { Installment } from './instrallmentDate/instrallmentDate.entity';
-import { NotesService } from './notes/notes.service';
-import { PresenceService } from './presence/presence.service';
-import { ListService } from './list/list.service';
-import { List } from './list/list.entity';
-import { Authorization } from './authorization/authorization.entity';
-import { Admins } from './admins/admins.entity';
-import { Notes } from './notes/notes.entity';
-import { Presence } from './presence/presence.entity';
-import { Users } from './users/users.entity';
-import { UsersService } from './users/users.service';
+import { AssignmentspController } from './components/assignment/assignment.controler';
+import { Tokens } from './tokens/tokens.entity';
+import { AdminsService } from './components/admins/admins.service';
+import { GroupController } from './components/group/group.controler';
+import { GroupService } from './components/group/group.service';
+import { Group } from './components/group/group.entity';
+import { InstallmentDateController } from './components/instrallmentDate/instrallmentDate.controller';
+import { InstallmentDateService } from './components/instrallmentDate/instrallmentDate.service';
+import { Installment } from './components/instrallmentDate/instrallmentDate.entity';
+import { NotesService } from './components/notes/notes.service';
+import { PresenceService } from './components/presence/presence.service';
+import { ListService } from './components/list/list.service';
+import { List } from './components/list/list.entity';
+import { Authorization } from './components/authorization/authorization.entity';
+import { Admins } from './components/admins/admins.entity';
+import { Notes } from './components/notes/notes.entity';
+import { Presence } from './components/presence/presence.entity';
+import { Users } from './components/users/users.entity';
+import { UsersService } from './components/users/users.service';
 import { Module } from '@nestjs/common';
 import { Connection } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LoginController } from './login/login.controller';
-import { LogoutController } from './logout/logout.controller';
-import { UsersController } from './users/users.controller';
-import { PresenceController } from './presence/presence.controller';
-import { ChargesController } from './charges/charges.controller';
-import { ListController } from './list/list.controller';
-import { ArchivesController } from './archives/archives.controller';
+import { LoginController } from './components/login/login.controller';
+import { LogoutController } from './components/logout/logout.controller';
+import { UsersController } from './components/users/users.controller';
+import { PresenceController } from './components/presence/presence.controller';
+import { ChargesController } from './components/charges/charges.controller';
+import { ListController } from './components/list/list.controller';
+import { ArchivesController } from './components/archives/archives.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import {
   StatisticsUniversityController,
-} from './stat/stat.controller';
-import { AdminsController } from './admins/admins.controller';
-import { AuthorizationController } from './authorization/authorization.controller';
-import { InstallmentController } from './installment/installment.controller';
-import { MembersController } from './members/members.controller';
-import { MembersService } from './members/members.service';
+} from './components/stat/stat.controller';
+import { AdminsController } from './components/admins/admins.controller';
+import { AuthorizationController } from './components/authorization/authorization.controller';
+import { InstallmentController } from './components/installment/installment.controller';
+import { MembersController } from './components/members/members.controller';
+import { MembersService } from './components/members/members.service';
+import { Guard } from './guards/roles.guard';
+import { Members } from './components/members/members.entity';
+import { NotesController } from './components/notes/notes.controller';
+import { InstallmentService } from './components/installment/installment.service';
+import { Installments } from './components/installment/installment.entity';
+import { AuthorizationService } from './components/authorization/authorization.service';
+import { StatService } from './components/stat/stat.service';
+
 
 
 @Module({
@@ -47,6 +52,7 @@ import { MembersService } from './members/members.service';
     TypeOrmModule.forRoot(),
     TypeOrmModule.forFeature([
       Users,
+      Tokens,
       Presence,
       Notes,
       Admins,
@@ -90,6 +96,8 @@ import { MembersService } from './members/members.service';
     AuthorizationService,
     InstallmentService,
     MembersService,
+    StatService,
+    Guard,
   ],
 })
 export class AppModule {

@@ -44,8 +44,6 @@ import { InstallmentService } from './components/installment/installment.service
 import { Installments } from './components/installment/installment.entity';
 import { AuthorizationService } from './components/authorization/authorization.service';
 import { StatService } from './components/stat/stat.service';
-import ormconfig from './orm.config';
-
 
 
 @Module({

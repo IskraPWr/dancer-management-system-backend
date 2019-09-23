@@ -35,6 +35,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+dist/
 
 # Optional npm cache directory
 .npm
@@ -71,3 +72,9 @@ jspm_packages/
 
 # FuseBox cache
 .fusebox/
+
+#init + server data
+app.module.ts
+
+# mail data
+mail-data.ts

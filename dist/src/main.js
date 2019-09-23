@@ -14,7 +14,7 @@ function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
         const PORT = process.env.PORT || 3000;
-        yield app.listen(PORT, '0.0.0.0');
+        yield app.listen(PORT);
     });
 }
 bootstrap();

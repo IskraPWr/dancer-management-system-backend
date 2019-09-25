@@ -43,7 +43,7 @@ class Mail {
                     pass: 'G3pdTSpaxp',
                 },
             });
-            yield fs_1.readFile('../iskra2/src/mailer/mail.html', {}, (err, readData) => {
+            yield fs_1.readFile('./mail.html', {}, (err, readData) => {
                 if (!err) {
                     mail = readData
                         .toString()

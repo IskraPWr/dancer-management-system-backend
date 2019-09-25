@@ -45,7 +45,7 @@ export class Mail {
     });
 
     // send mail with defined transport object
-    await readFile('./mail.html', {}, (err, readData) => {
+    await readFile('src/mailer/mail.html', {}, (err, readData) => {
       if (!err) {
         mail = readData
         .toString()

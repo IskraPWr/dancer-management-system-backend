@@ -1,4 +1,4 @@
-import { GeneratePass } from './../../validators/validators';
+import { GeneratePass, NewAccountData } from './../../validators/validators';
 import { NotesService } from './../notes/notes.service';
 import { UsersService } from './users.service';
 import { ICheckLoginError, ICheckPhoneError, ICheckKeyError, ICheckEmailError } from './../../typings/typings';
@@ -12,7 +12,7 @@ export declare class UsersController {
     generatePass(message: GeneratePass): Promise<void>;
     findOne(id: any): Promise<Users>;
     findAll(): Promise<any[]>;
-    addUser(message: any): Promise<any>;
+    addUser(message: NewAccountData): Promise<any>;
     check(idArray: any): Promise<ICheckLoginError | null>;
     checkPhone(idArray: any): Promise<ICheckPhoneError | null>;
     checkKey(idArray: any): Promise<ICheckKeyError | null>;

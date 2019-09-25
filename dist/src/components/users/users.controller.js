@@ -136,7 +136,7 @@ __decorate([
     common_1.Post('add'),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [validators_1.NewAccountData]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "addUser", null);
 __decorate([

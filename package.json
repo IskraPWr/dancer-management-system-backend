@@ -8,7 +8,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.build.json",
+    "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "start": "node dist/src/main.js",
     "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",

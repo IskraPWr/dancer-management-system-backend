@@ -93,7 +93,7 @@ export class UsersController {
   //post 
 
   @Post('add')
-  addUser(@Body() message: NewAccountData): Promise<any> {
+  addUser(@Body() message): Promise<any> {
     return this.users.addUser(message);
   }
 

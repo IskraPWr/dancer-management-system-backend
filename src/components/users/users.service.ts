@@ -320,7 +320,7 @@ export class UsersService {
             newUser.index,
             newUser.key1,
             newUser.key2,
-            newUser.department
+            newUser.department,
           ),
         );
         return this.usersRepository.insert(ent);

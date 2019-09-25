@@ -35,7 +35,6 @@ export class UsersController {
     return this.users.deleteUserById(id);
   }
 
-  
   @Post('generate')
   generatePass(@Body() message: GeneratePass) {
     return this.users.generatePass(message);
@@ -93,7 +92,7 @@ export class UsersController {
   //post 
 
   @Post('add')
-  addUser(@Body() message): Promise<any> {
+  addUser(@Body() message: NewAccountData): Promise<any> {
     return this.users.addUser(message);
   }
 

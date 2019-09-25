@@ -72,9 +72,3 @@ dist/
 
 # FuseBox cache
 .fusebox/
-
-#init + server data
-app.module.ts
-
-# mail data
-mail-data.ts
